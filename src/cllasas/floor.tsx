@@ -1,20 +1,44 @@
-import Elevator  from './elevator';
-class Floor {
-    
-    floorNumber: number;
-    elevatorsArriving: Elevator[];
-    
-    constructor(floorNumber: number) {
-        this.floorNumber = floorNumber;
-        this.elevatorsArriving = [];
-    }  
+import React from 'react';
+import './Floor.css'; // ייבוא קובץ CSS
+import Elevator from './elevator'
 
-    addElevatorArriving(elevator: Elevator): void {
-        // להוספת מעלית שמתכננת להגיע לקומה
+class Floor extends React.Component {
+    constructor(props:any) {
+        super(props);
+        this.state = {
+            elevatorsArriving: [],
+        };
     }
 
-    removeElevatorArriving(elevator: Elevator): void {
-        // להסרת מעלית שמתכננת להגיע מהרשימה
+    // addElevatorArriving(elevator:Elevator) {
+    //     this.setState(prevState => ({
+    //         elevatorsArriving: [...prevState.elevatorsArriving, elevator],
+    //     }));
+    // }
+
+    // removeElevatorArriving(elevator:Elevator) {
+    //     this.setState(prevState => ({
+    //         elevatorsArriving: prevState.elevatorsArriving.filter(e => e !== elevator),
+    //     }));
+    // }
+
+    render() {
+        const  floorNumber  = this.props;
+        const  elevatorsArriving  = this.state;
+
+        return (
+            <div className="floor">
+               
+                
+                {/* <div className="floor-number">Floor Number: {floorNumber}</div> */}
+                <div className="elevators">
+                    {/* {elevatorsArriving.map(elevator => (
+                        <div className="elevator" key={elevator.id}>Elevator {elevator.id}</div>
+                    ))} */}
+                </div>
+            </div>
+        );
     }
 }
-export default Floor
+
+export default Floor;
