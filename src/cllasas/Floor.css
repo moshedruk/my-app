@@ -1,34 +1,24 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    /* align-items:center; */
-    
-    /* justify-content: space-between; שיתוף הרווח בין האלמנטים */
-    height: 100vh; /* גובה המסך כולו */
-    
-  }
-  
-
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  justify-content: flex-end; /* ממריץ את התכנים לתחתית */
+  height: 100vh;
+}
 
 .floor {
-   
-  /* bottom: 0;
+ 
   left: 0;
-  align-self: flex-end; */
-    width: 110px;
-    margin-bottom: -2px;
-    height: 34px;
-    background-color: silver;
-    background-image: linear-gradient(335deg, #b00 23px, transparent 23px), 
-                      linear-gradient(155deg, #d00 23px, transparent 23px), 
-                      linear-gradient(335deg, #b00 23px, transparent 23px), 
-                      linear-gradient(155deg, #d00 23px, transparent 23px);
-    background-size: 60px 60px;
-    background-position: 0px 2px, 4px 35px, 29px 31px, 34px 6px;
-    border-color: black;
-
-    border-style: solid; /* סגנון הגבול */
-    /* border-width: 0 0 7px; רוחב הגבול בצדדים ובתחתית */
-    
+  width: 110px;  
+  margin-bottom: 1px; 
+  height: 34px;
+  background-color: silver;
+  background-image: linear-gradient(335deg, #b00 23px, transparent 23px), 
+                    linear-gradient(155deg, #d00 23px, transparent 23px), 
+                    linear-gradient(335deg, #b00 23px, transparent 23px), 
+                    linear-gradient(155deg, #d00 23px, transparent 23px);
+  background-size: 60px 60px;
+  background-position: 0px 2px, 4px 35px, 29px 31px, 34px 6px;
+  border-color: black;
+  border-style: solid; /* סגנון הגבול */
 }
-  
