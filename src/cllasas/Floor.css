@@ -5,8 +5,7 @@
   justify-content: flex-end; /* ממריץ את התכנים לתחתית */ 
 }
 
-.floor {   
- 
+.floor {    
   width: 200px;   
   height: 110px;
   background-color: silver;
@@ -15,12 +14,12 @@
                     linear-gradient(335deg, #b00 23px, transparent 23px), 
                     linear-gradient(155deg, #d00 23px, transparent 23px);
   background-size: 58px 58px;
-  background-position: 0px 2px, 4px 35px, 29px 31px, 34px 6px;
-  
+  background-position: 0px 2px, 4px 35px, 29px 31px, 34px 6px;  
 }
 .container-button{
   /* position: relative; */
   /* height: 100vh; */
+  
   display: flex;
   justify-content: center
   
@@ -28,7 +27,7 @@
 }
 
 .metal.linear {
-  margin-top: 15%;
+  /* margin-top: 15%; */
   width: 60px;
   font-size: 2em;
   height: 65px;
