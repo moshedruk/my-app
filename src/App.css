@@ -1,4 +1,7 @@
-.container {
-  
-  height: 100%;
+
+.main{
+  height: 99vh;
+  width: 100vw;
+  display: flex;
 }
+

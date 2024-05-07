@@ -1,0 +1,25 @@
+
+
+.ee{    
+  display: flex;
+  flex-direction: row-reverse;   
+  height: 100%;
+  width: 390px;   
+} 
+.container-floors{       
+    display: flex;
+    flex-direction: column-reverse;
+    padding-bottom: 5px;    
+}
+.container-floor {
+    display: flex;
+    align-items: flex-end;
+    justify-content:center;
+    position: relative;    
+    height: 110px;
+    border-top: 7px solid black;
+}
+.container-ele {        
+    display: flex;
+    flex-direction: row;
+}
