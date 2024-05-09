@@ -1,122 +1,103 @@
 import React, { Component } from 'react';
 import './elevator.css'; // ייבוא קובץ CSS
+import { floorHeightConfig } from '../config';
+
+export enum Enum_status {
+    notActive = "notActive",
+    Active = "Active"
+}
 interface ElevatorProps {
     currentFloor: number;
-    destinationFloor: number;
-    status: string;
     estimatedTimeToDestination: number;
-    queue:number [];
+    queue: number[];
     number: number
     last_floor: number;
+    status :  Enum_status
+    blong_to: number;
 }
-
 class Elevator extends Component {
     currentFloor
-    destinationFloor
-    status 
-    estimatedTimeToDestination     
+    estimatedTimeToDestination
     queue
     number
     last_floor
-
-    constructor(props:ElevatorProps) {
-        super(props);       
+    status 
+    blong_to
+    constructor(props: ElevatorProps) {
+        super(props);
         this.currentFloor = props.currentFloor;
-        this.destinationFloor = props.destinationFloor;
-        this.status = props.status;
         this.estimatedTimeToDestination = props.estimatedTimeToDestination;
-        this.queue = props.queue; 
-        this.number = props.number  
-        this.last_floor = props.last_floor;    
-    }   
-    move = () =>{
-
-        let numfloor = this.queue[this.queue.length - 1];
-        if (this.state === 'active' ) return;
-        if( numfloor === undefined) return
-        
+        this.queue = props.queue;
+        this.number = props.number
+        this.last_floor = props.last_floor;
+        this.status = props.status;
+        this.blong_to = props.blong_to;        
+    }
+    move = () => {
+        let numfloor = this.queue[this.queue.length - 1];        
+        if (numfloor === undefined) return
+        if (this.status=== 'Active') return  
+        this.status = Enum_status.Active      
         // find element byclassname
-        const elevatorImg = document.getElementById('elevator ' +this.number) as HTMLElement;
-        
+        const elevatorImg = document.getElementById('elevator' + this.blong_to + this.number) as HTMLElement;
         if (elevatorImg) {
-            // calculate time
-            const time = Math.abs(this.currentFloor - numfloor)/2
-            const t = Math.abs(this.currentFloor - numfloor);
+            // calculate time            
+            const time = Math.abs(this.currentFloor - numfloor) / 2            
             elevatorImg.style.transitionDuration = `${time}s`;
-            elevatorImg.style.transform = `translateY(-${numfloor * 117}px)`;           
-            
-
+            elevatorImg.style.transform = `translateY(-${numfloor * floorHeightConfig}px)`;
             setTimeout(() => {
                 var audio = new Audio('ding.mp3');
                 audio.play();
-                // play audio 
-                this.queue.pop()
-                // wait 2 seconds
-                this.status = 'idle'                
-                this.move() 
-
-            }, time*1000)
-
-            this.currentFloor = numfloor
-            // console.log(this.currentFloor)
-            this.status = 'active'
-        }
-
-    } 
-    calculateTimeTarget(floorNumber:number) {   
-        let v = this.calculate_ToFloor(floorNumber)  
+                this.status = Enum_status.notActive;                
+                // השהייה למשך זמן מסוים
+                this.queue.pop();
+                setTimeout(() => {
+                    // הפעלת הפונקציה
+                    this.move();
+                }, 2000); // השהייה למשך 2 שניות
             
-        this.estimatedTimeToDestination += v 
-        
-        // return this.estimatedTimeToDestination;
+            }, time * 1000);
+            this.currentFloor = numfloor;
+        }
     }
-    calculateMinus =() =>{
-        
+    calculateTimeTarget(floorNumber: number) {
+        let v = this.calculate_ToFloor(floorNumber)
+        this.estimatedTimeToDestination += v;
+    }
+    calculateMinus = () => {
         if (this.estimatedTimeToDestination <= 0) {
-            return 
+            return
         }
-        else{
-            
-            console.log(this.estimatedTimeToDestination)
-            this.estimatedTimeToDestination -= 0.5;                 
-            setTimeout(() => {                 
-                this.calculateMinus()                
+        else {            
+            this.estimatedTimeToDestination -= 0.5;
+            setTimeout(() => {
+                this.calculateMinus()
                 // wait 2 seconds                
             }, 500)
-            
+        }
+    }
 
-        }}
-    
     calculate_ToFloor(floorNumber: number) {
-        const distance = Math.abs(this.last_floor - floorNumber)/2;                     
+        const distance = Math.abs(this.last_floor - floorNumber) / 2;
         return distance;
     }
-    
-
-    add_to_queue(floorNumber: number) {
+    updete_ele(floorNumber: number, time_to_target_floor: number) {        
         //הכנסה לתור 
-        this.queue.unshift(floorNumber);  
-        console.log(this.queue.length )
+        this.queue.unshift(floorNumber);
         //הוספה לזמן אמת את המרחק 
-        this.calculateTimeTarget(floorNumber) 
+        this.estimatedTimeToDestination += time_to_target_floor+2
         //שינוי המצביע למיקום הקומה האחרונה שנכנסה
-        this.last_floor = floorNumber; 
-        //חישוב זמן אמת של המעלית בשעת תנועה 
-        this.calculateMinus();
-        // כדי לא לקרוא שוב ושוב לפונקציה בכל לחיצת כפתור מחדש אלא לפי המוגדר לה הפונקציה
-        if(this.queue.length ===1){
-            this.move()  
-        }          
-      
-    } 
-
+        this.last_floor = floorNumber;
+        //חישוב זמן אמת של המעלית בשעת תנועה         
+        // כדי לא לקרוא שוב ושוב לפונקציה בכל לחיצת כפתור מחדש אלא לפי המוגדר לה הפונקציה        
+        this.move()
+    }
     render() {
-        return (                           
-            <div className='elevator ' id={ 'elevator '+this.number} >
-            <img className='elevator-img' src={'/elv.png'} alt="מעלית" />        
+        return (
+            <div className='elevator' id={'elevator' + this.blong_to + this.number} >
+                <img className='elevator-img' src={'/elv.png'} alt="מעלית" />
             </div>
         );
-    }    
+    }
 }
-
 export default Elevator;
