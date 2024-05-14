@@ -42,19 +42,17 @@ class Elevator extends Component {
         const elevatorImg = document.getElementById('elevator' + this.blong_to + this.number) as HTMLElement;
         if (elevatorImg) {
             // calculate time            
-            const time = Math.abs(this.currentFloor - numfloor) / 2            
+            const time = Math.abs(this.currentFloor - numfloor) / 2          
             elevatorImg.style.transitionDuration = `${time}s`;
             elevatorImg.style.transform = `translateY(-${numfloor * floorHeightConfig}px)`;
             setTimeout(() => {
                 var audio = new Audio('ding.mp3');
                 audio.play();
-                this.status = Enum_status.notActive;                
-                // השהייה למשך זמן מסוים
                 this.queue.pop();
-                setTimeout(() => {
-                    // הפעלת הפונקציה
+                setTimeout(() => {                    
+                    this.status = Enum_status.notActive;                  
                     this.move();
-                }, 2000); // השהייה למשך 2 שניות
+                }, 2000); 
             
             }, time * 1000);
             this.currentFloor = numfloor;
@@ -82,14 +80,9 @@ class Elevator extends Component {
         return distance;
     }
     updete_ele(floorNumber: number, time_to_target_floor: number) {        
-        //הכנסה לתור 
         this.queue.unshift(floorNumber);
-        //הוספה לזמן אמת את המרחק 
-        this.estimatedTimeToDestination += time_to_target_floor+2
-        //שינוי המצביע למיקום הקומה האחרונה שנכנסה
+        this.estimatedTimeToDestination += time_to_target_floor + 2
         this.last_floor = floorNumber;
-        //חישוב זמן אמת של המעלית בשעת תנועה         
-        // כדי לא לקרוא שוב ושוב לפונקציה בכל לחיצת כפתור מחדש אלא לפי המוגדר לה הפונקציה        
         this.move()
     }
     render() {

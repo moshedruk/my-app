@@ -1,19 +1,14 @@
-import React, { Component, useState } from 'react';
-import './Floor.css'; // ייבוא קובץ CSS
-import Elevator from './elevator';
+import React, { Component } from 'react';
+import './Floor.css'; 
 
-// הגדרת אינטרפייס לפרופס של Floor
-// interface FloorProps {
-//     floorNumber: number;
-//     Click: string;
-// }
+
+
 interface FloorProps {
     floorNumber: number;   
     handleClick: (floorNumber: number) => void; 
     blong_to_bild: number;   
   } 
 
-// מחלקת קומה (Floor)
 class Floor extends Component<FloorProps> {  
     floorNumber: number;  
     Arrival_Time : number;
@@ -31,8 +26,7 @@ class Floor extends Component<FloorProps> {
         const element = document.querySelector('#time' +this.blong_to_bild+ this.floorNumber);
         if (element) {            
         element.innerHTML = this.Arrival_Time.toString();
-        }
-        this.Arrival_Time = time;         
+        }                
         if (this.Arrival_Time <= 0) {            
             return;
         } else {            
@@ -46,30 +40,30 @@ class Floor extends Component<FloorProps> {
         const Img = document.querySelector('#metal' +this.blong_to_bild  +this.floorNumber) as HTMLElement;
         if (Img){            
             Img.style.backgroundColor = newColor;
-            setTimeout(() => this.setBackToOriginal(), time * 1000); // קריאה לפונקציה setBackToOriginal בתוך פונקציה קולטת
+            setTimeout(() => this.setBackToOriginal(), time * 1000); 
         }
     };    
     setBackToOriginal = () => {        
         const Img = document.querySelector('#metal' + this.blong_to_bild + this.props.floorNumber) as HTMLElement;
         if (Img){            
-            Img.style.backgroundColor = 'white'; // שינוי הצבע לערך המקורי
+            Img.style.backgroundColor = 'white'; 
         }
     }     
     _render() {                
         return (
             <div className='container-floor'>
-            <div className="floor"/> 
-            <div className='container-button'>
-            <button 
-            className={`metal`} id={'metal' +this.blong_to_bild + this.props.floorNumber}
-            onClick={() => {
-            this.props.handleClick(this.props.floorNumber)}}>
-            {this.props.floorNumber}
-            </button>            
-            <div className="time" id={'time'+ this.blong_to_bild+ this.props.floorNumber} style={{ /* הסגנונות שלך כאן */ }}>
-                {this.Arrival_Time}
-            </div>
-            </div>             
+                <div className="floor"/> 
+                    <div className='container-button'>
+                        <button 
+                        className={`metal`} id={'metal' +this.blong_to_bild + this.props.floorNumber}
+                        onClick={() => {
+                        this.props.handleClick(this.props.floorNumber)}}>
+                        {this.props.floorNumber}
+                        </button>            
+                        <div className="time" id={'time'+ this.blong_to_bild+ this.props.floorNumber}>
+                        {this.Arrival_Time}
+                        </div>
+                </div>             
             </div>           
         );
     }
