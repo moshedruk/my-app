@@ -3,6 +3,11 @@ import Floor from '../classes/floor';
 import BuildingStructure from '../classes/buildingStructure';
 import Elevator, { Enum_status } from '../classes/elevator';
 
+// Factory function to create instances of different classes based on the specified type and size.
+// The type of object to create ('bild' for building structures, 'elevator' for elevators, 'floor' for floors).
+// Blong_to Optional parameter specifying the building number to which the object belongs.
+// handleClick Optional parameter for the click event handler function for floors.
+// returns An array of instances of the specified type.
 function Factory(type: string, size: number, Blong_to?: number, handleClick?: (floorNumber: number) => void) {
     const defaultValue = 0;
     const defaultValueF = () => { }
