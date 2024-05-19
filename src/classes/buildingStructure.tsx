@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import Elevator from './elevator';
 import Floor from './floor';
-import './buildingStructure.css'
-
+import '../css/buildingStructure.css';
 
 interface BuildingStructureProps {
     numFloors: number;
@@ -24,6 +23,7 @@ class BuildingStructure extends Component<BuildingStructureProps> {
         let nearest_ele = this.elevators[0];        
         this.elevators.forEach((elevator) => {   
         let time = elevator.estimatedTimeToDestination + elevator.calculate_ToFloor(floorNumber);
+        
             if (time < minTime) {
                 minTime = time;
                 nearest_ele = elevator;

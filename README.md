@@ -1,3 +1,26 @@
+# Elevator Management System
+
+Elevator Management System is a React and TypeScript based project that simulates the operation of multiple buildings with multiple floors and elevators. Each building can have a different number of floors and elevators, and the system handles elevator calls and displays the estimated time of arrival.
+
+## Features
+
+- Manage multiple buildings, each with a unique number of floors and elevators.
+- Simulate elevator movements and display estimated arrival times.
+- Change button colors to indicate elevator status.
+- Smooth animations for elevator movements.
+
+## Project Structure
+
+- `App.tsx`: The main application component that renders multiple buildings based on the provided configurations.
+- `BuildingStructure.tsx`: A component that represents a single building with elevators and floors.
+- `Elevator.tsx`: A component that represents an elevator and handles its state and movements.
+- `Floor.tsx`: A component that represents a floor in a building, displaying the floor number and handling button clicks.
+- `config.ts`: Configuration file that provides building configurations (number of floors per building).
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

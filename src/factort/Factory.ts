@@ -1,10 +1,7 @@
-import React, { ReactNode } from 'react';
-import Floor from './classes/floor';
-import BuildingStructure from './classes/buildingStructure';
-import Elevator, { Enum_status } from './classes/elevator';
-import './App.css'
-import { numBuildings, numElevators, numFloors } from './config';
 
+import Floor from '../classes/floor';
+import BuildingStructure from '../classes/buildingStructure';
+import Elevator, { Enum_status } from '../classes/elevator';
 
 function Factory(type: string, size: number, Blong_to?: number, handleClick?: (floorNumber: number) => void) {
     const defaultValue = 0;
@@ -13,8 +10,8 @@ function Factory(type: string, size: number, Blong_to?: number, handleClick?: (f
         const buildings: any = [];
         for (let i = 0; i < size; i++) {
             buildings.push(new BuildingStructure({
-                numFloors: numFloors,
-                numElevators: numElevators,
+                numFloors: size ,
+                numElevators: size,
                 number: i
             }));
         }
@@ -22,7 +19,7 @@ function Factory(type: string, size: number, Blong_to?: number, handleClick?: (f
     }
     if (type === 'elevator') {
         const elevators = [];
-        for (let i = 0; i < numElevators; i++) {
+        for (let i = 0; i < size; i++) {
             elevators.push(new Elevator({
                 currentFloor: 0,
                 estimatedTimeToDestination: 0,
@@ -37,7 +34,7 @@ function Factory(type: string, size: number, Blong_to?: number, handleClick?: (f
     }
     if (type === 'floor') {
         const floors = [];
-        for (let i = 0; i <= numFloors; i++) {
+        for (let i = 0; i <= size; i++) {
             const floor = new Floor({ floorNumber: i, handleClick: handleClick !== undefined ? handleClick : defaultValueF, blong_to_bild: Blong_to !== undefined ? Blong_to : defaultValue, });
             floors.push(floor);
         }

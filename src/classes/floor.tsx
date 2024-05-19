@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './Floor.css'; 
+import '../css/Floor.css'; 
 
 
 
@@ -11,28 +11,36 @@ interface FloorProps {
 
 class Floor extends Component<FloorProps> {  
     floorNumber: number;  
-    Arrival_Time : number;
+    Arrival_Time : number | string;
     blong_to_bild: number;
+    
     
     constructor(props: FloorProps) {
       super(props);  
       this.floorNumber = props.floorNumber;    
-      this.Arrival_Time = 0; 
-      this.blong_to_bild = props.blong_to_bild 
+      this.Arrival_Time = ''; 
+      this.blong_to_bild = props.blong_to_bild       
     }
-
+    
     display_time(time: number): void {
-        this.Arrival_Time = time;
+        this.Arrival_Time = time;        
         const element = document.querySelector('#time' +this.blong_to_bild+ this.floorNumber);
-        if (element) {            
-        element.innerHTML = this.Arrival_Time.toString();
+        if (element) {     
+            if(this.Arrival_Time != 0) { 
+                element.innerHTML = this.Arrival_Time.toString();
+            }
+            else{
+                element.innerHTML = '';  }      
+        
         }                
-        if (this.Arrival_Time <= 0) {            
+        if (this.Arrival_Time <= 0) { 
+                    
             return;
         } else {            
             setTimeout(() => {                
             this.display_time(time - 0.5);
             }, 500);
+             
         }
     }
     
@@ -49,7 +57,8 @@ class Floor extends Component<FloorProps> {
             Img.style.backgroundColor = 'white'; 
         }
     }     
-    _render() {                
+    _render() {   
+                  
         return (
             <div className='container-floor'>
                 <div className="floor"/> 
@@ -59,10 +68,14 @@ class Floor extends Component<FloorProps> {
                         onClick={() => {
                         this.props.handleClick(this.props.floorNumber)}}>
                         {this.props.floorNumber}
-                        </button>            
-                        <div className="time" id={'time'+ this.blong_to_bild+ this.props.floorNumber}>
-                        {this.Arrival_Time}
+                        </button>
+                        <div 
+                            className="time" 
+                            id={'time' + this.blong_to_bild + this.props.floorNumber}                             
+                        >
+                              {this.Arrival_Time}
                         </div>
+                 
                 </div>             
             </div>           
         );

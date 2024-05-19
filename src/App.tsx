@@ -2,20 +2,23 @@ import React, {  ReactNode } from 'react';
 import Floor from './classes/floor';
 import BuildingStructure from './classes/buildingStructure';
 import Elevator, { Enum_status } from './classes/elevator';
-import './App.css'
-import { numBuildings, numElevators, numFloors } from './config';
-import Factory from './fun_Factory';
+import './css/App.css';
+import { getBuildingConfigsElevator,getBuildingConfigsFloors,floorHe, numBuildings } from './configurtion/config';
+import Factory from './factort/Factory';
 
  
 
 function createBuildingStructures() {
   let buildings: BuildingStructure[]
+  let b = getBuildingConfigsElevator(1,2)
+  let c = getBuildingConfigsFloors(5,3)
+
   buildings = Factory('bild', numBuildings);
-  buildings.map((building) => {
-    building.elevators = Factory('elevator', numElevators,building.number);
+  buildings.map((building,index) => {
+    building.elevators = Factory('elevator', floorHe[index],building.number);
   })
-  buildings.map((building) => {
-    building.floors = Factory('floor', numElevators,building.number,building.Minimum_selection_ele);
+  buildings.map((building,index) => {
+    building.floors = Factory('floor',c[index] ,building.number,building.Minimum_selection_ele);
   })
   return buildings
 }
