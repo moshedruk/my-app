@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import '../css/Floor.css'; 
-
-
+import '../style/Floor.css'; 
 
 interface FloorProps {
     floorNumber: number;   
@@ -23,26 +21,24 @@ class Floor extends Component<FloorProps> {
     }
     
     display_time(time: number): void {
-        this.Arrival_Time = time;        
-        const element = document.querySelector('#time' +this.blong_to_bild+ this.floorNumber);
-        if (element) {     
-            if(this.Arrival_Time != 0) { 
-                element.innerHTML = this.Arrival_Time.toString();
+        this.Arrival_Time = time; // Update Arrival_Time property
+        const element = document.querySelector('#time' + this.blong_to_bild + this.floorNumber); // Find the HTML element
+        if (element) {
+            if (this.Arrival_Time !== 0) {
+                element.innerHTML = this.Arrival_Time.toString(); // Update inner HTML to display arrival time
+            } else {
+                element.innerHTML = ''; // Clear content if arrival time is zero
             }
-            else{
-                element.innerHTML = '';  }      
-        
-        }                
-        if (this.Arrival_Time <= 0) { 
-                    
-            return;
-        } else {            
-            setTimeout(() => {                
-            this.display_time(time - 0.5);
+        }
+        if (this.Arrival_Time <= 0) {
+            return; // Exit function if arrival time is zero or negative
+        } else {
+            setTimeout(() => {
+                this.display_time(time - 0.5); // Call function recursively after a delay
             }, 500);
-             
         }
     }
+    
     
     setButtonColor = (newColor: string ,time : number) => {
         const Img = document.querySelector('#metal' +this.blong_to_bild  +this.floorNumber) as HTMLElement;
@@ -56,7 +52,8 @@ class Floor extends Component<FloorProps> {
         if (Img){            
             Img.style.backgroundColor = 'white'; 
         }
-    }     
+    } 
+    // Render method for Floor component    
     _render() {   
                   
         return (

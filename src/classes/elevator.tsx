@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import '../css/elevator.css'; // ייבוא קובץ CSS
-import { floorHeightConfig } from '../configurtion/config';
+import '../style/elevator.css'; // ייבוא קובץ CSS
+import { floorHeightConfig } from '../configuration/config';
 
+// Enum representing the status of an elevator
 export enum Enum_status {
     notActive = "notActive",
     Active = "Active"
@@ -33,8 +34,8 @@ class Elevator extends Component<ElevatorProps> {
         this.status = props.status;
         this.blong_to = props.blong_to;        
     }
-    move = () => {
-        console.log(this.estimatedTimeToDestination)
+    // Moves the elevator to the next floor in the queue
+    move() {        
         let numfloor = this.queue[this.queue.length - 1];        
         if (numfloor === undefined) return
         if (this.status=== 'Active') return  
@@ -53,42 +54,46 @@ class Elevator extends Component<ElevatorProps> {
                 setTimeout(() => {                    
                     this.status = Enum_status.notActive;                  
                     this.move();
-                }, 2000); 
-            
+                }, 2000);             
             }, time * 1000);
             this.currentFloor = numfloor;
         }
     }
     calculateTimeTarget(floorNumber: number) {
-        let v = this.calculate_ToFloor(floorNumber)
-        this.estimatedTimeToDestination += v;
+        // Calculate the time required to reach the target floor
+        let timeToTargetFloor = this.calculate_ToFloor(floorNumber);
+        // Update the estimated time to destination
+        this.estimatedTimeToDestination += timeToTargetFloor;
     }
-    calculateMinus = () => {
-        
+    calculateMinus() {        
         if (this.estimatedTimeToDestination <= 0) {
-            return
-        }
-        else {            
-            this.estimatedTimeToDestination -= 0.5;
+            return; // Destination reached, exit the function
+        } else {            
+            this.estimatedTimeToDestination -= 0.5; // Decrement the estimated time
             setTimeout(() => {
-                this.calculateMinus()
+                this.calculateMinus(); // Call the function recursively
                 // wait 2 seconds                
-            }, 500)
+            }, 500);
         }
     }
+    
 
     calculate_ToFloor(floorNumber: number) {
         const distance = Math.abs(this.last_floor - floorNumber) / 2;
         return distance;
     }
     updete_ele(floorNumber: number, time_to_target_floor: number) {   
-        console.log(this.estimatedTimeToDestination)     
+        // Add the new destination to the beginning of the queue
         this.queue.unshift(floorNumber);
-        this.estimatedTimeToDestination = time_to_target_floor + 2
-        console.log("oooo" + (time_to_target_floor + 2))
+        // Set the estimated time to destination
+        this.estimatedTimeToDestination = time_to_target_floor + 2;
+        // Update the last floor visited
         this.last_floor = floorNumber;
-        this.move()
+        // Initiate the elevator movement
+        this.move();
     }
+    
+    // Render method for Elevator component 
     render() {
         return (
             <div className='elevator' id={'elevator' + this.blong_to + this.number} >
