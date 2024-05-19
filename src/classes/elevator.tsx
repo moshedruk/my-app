@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import './elevator.css'; // ייבוא קובץ CSS
-import { floorHeightConfig } from '../config';
+import '../css/elevator.css'; // ייבוא קובץ CSS
+import { floorHeightConfig } from '../configurtion/config';
 
 export enum Enum_status {
     notActive = "notActive",
@@ -15,7 +15,7 @@ interface ElevatorProps {
     status :  Enum_status
     blong_to: number;
 }
-class Elevator extends Component {
+class Elevator extends Component<ElevatorProps> {
     currentFloor
     estimatedTimeToDestination
     queue
@@ -34,6 +34,7 @@ class Elevator extends Component {
         this.blong_to = props.blong_to;        
     }
     move = () => {
+        console.log(this.estimatedTimeToDestination)
         let numfloor = this.queue[this.queue.length - 1];        
         if (numfloor === undefined) return
         if (this.status=== 'Active') return  
@@ -63,6 +64,7 @@ class Elevator extends Component {
         this.estimatedTimeToDestination += v;
     }
     calculateMinus = () => {
+        
         if (this.estimatedTimeToDestination <= 0) {
             return
         }
@@ -79,9 +81,11 @@ class Elevator extends Component {
         const distance = Math.abs(this.last_floor - floorNumber) / 2;
         return distance;
     }
-    updete_ele(floorNumber: number, time_to_target_floor: number) {        
+    updete_ele(floorNumber: number, time_to_target_floor: number) {   
+        console.log(this.estimatedTimeToDestination)     
         this.queue.unshift(floorNumber);
-        this.estimatedTimeToDestination += time_to_target_floor + 2
+        this.estimatedTimeToDestination = time_to_target_floor + 2
+        console.log("oooo" + (time_to_target_floor + 2))
         this.last_floor = floorNumber;
         this.move()
     }
