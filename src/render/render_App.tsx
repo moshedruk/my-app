@@ -16,7 +16,7 @@ const Render_App: React.FC<RenderProps> = ({ BuildingStructure }) => {
         <div className='BuildingStructure' id={'main' + BuildingStructure.number}>
             <div className="container-ele">
                 {BuildingStructure.elevators.map((elevator, index) => (
-                    <_Renderelevator key={index} ele={elevator} />
+                    <_Renderelevator key={index} elevator={elevator} />
                 ))}
             </div>
             <div className='container-floors'>
