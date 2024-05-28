@@ -1,11 +1,10 @@
 import Elevator from "../classes/elevator";
+import { Render_by_Props_elevator } from "../Interfaces/interfaces";
 import '../style/elevator.css'; // ייבוא קובץ CSS
 
-interface RenderProps {    
-    elevator : Elevator
-}
 
-const _Renderelevator: React.FC<RenderProps> = ({ elevator }) => {    
+
+const _Renderelevator: React.FC<Render_by_Props_elevator> = ({ elevator }) => {    
     return (
         <div className='elevator' id={'elevator' + elevator.blong_to + elevator.number} >
             <img className='elevator-img' src={'/elv.png'} alt="מעלית" />

@@ -1,7 +1,9 @@
 
 import Floor from '../classes/floor';
 import BuildingStructure from '../classes/buildingStructure';
-import Elevator, { Enum_status } from '../classes/elevator';
+import { Enum_status } from '../Interfaces/interfaces';
+import Elevator from '../classes/elevator';
+
 
 //  Factory function to create instances of different classes based on the specified type and size.
 //  The type of object to create ('bild' for building structures, 'elevator' for elevators, 'floor' for floors).
