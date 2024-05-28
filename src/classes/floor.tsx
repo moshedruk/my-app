@@ -52,31 +52,7 @@ class Floor extends Component<FloorProps> {
         if (Img){            
             Img.style.backgroundColor = 'white'; 
         }
-    } 
-    // Render method for Floor component    
-    _render() {   
-                  
-        return (
-            <div className='container-floor'>
-                <div className="floor"/> 
-                    <div className='container-button'>
-                        <button 
-                        className={`metal`} id={'metal' +this.blong_to_bild + this.props.floorNumber}
-                        onClick={() => {
-                        this.props.handleClick(this.props.floorNumber)}}>
-                        {this.props.floorNumber}
-                        </button>
-                        <div 
-                            className="time" 
-                            id={'time' + this.blong_to_bild + this.props.floorNumber}                             
-                        >
-                              {this.Arrival_Time}
-                        </div>
-                 
-                </div>             
-            </div>           
-        );
-    }
+    }     
 }
 
 export default Floor;

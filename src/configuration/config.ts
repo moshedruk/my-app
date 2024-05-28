@@ -7,10 +7,10 @@ export const numBuildings = 5;
 export const floorHeightConfig = 117;
 
 // Configuration array specifying the number of elevators in each building. 
-export const elevatorsConfig: number[] = [3, 3, 1];
+export const elevatorsConfig: number[] = [2, 3, 1];
 
 // Configuration array specifying the number of floors in each building.
-export const floorsConfig: number[] = [4,3,4];
+export const floorsConfig: number[] = [7,3,4];
 
 // Default number of elevators if not specified in the configuration.
 export const defaultConfigElevators = 2;
