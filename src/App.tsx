@@ -3,7 +3,7 @@ import BuildingStructure from './classes/buildingStructure';
 import { elevatorsConfig, numBuildings, floorsConfig, defaultConfigFloors, defaultConfigElevators } from './configuration/config';
 import Factory from './factory/Factory';
 import './style/App.css';
-
+import Render_App from './render/render_App';
 
 
 function createBuildingStructures() {
@@ -31,18 +31,16 @@ function createBuildingStructures() {
   return buildings
 }
 
-
 function App() {
   const buildings = createBuildingStructures();
   return (
-    <div className='main' id={'main'}>
-      {buildings.map((building) => {
-        return building.render();
-      })}
-    </div>
+      <div className='main' id={'main'}>
+          {buildings.map((building, index) => (
+              <Render_App BuildingStructure={building} key={index} />
+          ))}
+      </div>
   );
 }
-
 
 export default App;
 

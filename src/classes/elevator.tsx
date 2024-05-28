@@ -91,15 +91,6 @@ class Elevator extends Component<ElevatorProps> {
         this.last_floor = floorNumber;
         // Initiate the elevator movement
         this.move();
-    }
-    
-    // Render method for Elevator component 
-    render() {
-        return (
-            <div className='elevator' id={'elevator' + this.blong_to + this.number} >
-                <img className='elevator-img' src={'/elv.png'} alt="מעלית" />
-            </div>
-        );
-    }
+    }   
 }
 export default Elevator;

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Elevator from './elevator';
 import Floor from './floor';
-import '../style/buildingStructure.css';
 
 interface BuildingStructureProps {
     numFloors: number;  // Number of floors in the building
@@ -44,25 +43,7 @@ class BuildingStructure extends Component<BuildingStructureProps> {
             this.floors[floorNumber].setButtonColor('green', minTime);
             this.floors[floorNumber].display_time(minTime);
         }
-    };
-    // Render method for BuildingStructure component
-    render(): JSX.Element {
-        return (
-            <div className='BuildingStructure' id={'main' + this.number}>
-                <div className="container-ele">
-                    {this.elevators.map((elevator, index) => (
-                        elevator.render()))}
-                </div>
-                <div className='container-floors'>
-                    {this.floors.map((floor, index) => (
-                        <div key={index}>
-                            {floor._render()}
-                        </div>
-                    ))}
-                </div>
-            </div>
-        );
-    }
+    };    
 }
 export default BuildingStructure;
 
