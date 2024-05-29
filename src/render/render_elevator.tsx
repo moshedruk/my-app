@@ -4,7 +4,7 @@ import '../style/elevator.css'; // ייבוא קובץ CSS
 
 
 
-const _Renderelevator: React.FC<Render_by_Props_elevator> = ({ elevator }) => {    
+const _RenderElevator: React.FC<Render_by_Props_elevator> = ({ elevator }) => {    
     return (
         <div className='elevator' id={'elevator' + elevator.blong_to + elevator.number} >
             <img className='elevator-img' src={'/elv.png'} alt="מעלית" />
@@ -12,4 +12,4 @@ const _Renderelevator: React.FC<Render_by_Props_elevator> = ({ elevator }) => {
     );
 }
     
-    export default _Renderelevator
+    export default _RenderElevator

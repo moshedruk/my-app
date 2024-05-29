@@ -1,9 +1,9 @@
 import React from 'react';
-import BuildingStructure from '../classes/buildingStructure';
 import '../style/buildingStructure.css';
 import _Renderfloor from './render_floor';
-import _Renderelevator from './render_elevator';
+import _RenderElevator from './render_elevator';
 import { Render_by_Props_BuildingStructure } from "../Interfaces/interfaces";
+import RenderFloor from './render_floor';
 
 // Define the props interface for the Render_App component
 
@@ -15,14 +15,14 @@ const Render_App: React.FC<Render_by_Props_BuildingStructure> = ({ BuildingStruc
             <div className="container-ele">
                 {/* Goes over the array and pushes to the renderer component */}
                 {BuildingStructure.elevators.map((elevator, index) => (
-                    <_Renderelevator key={index} elevator={elevator} />
+                    <_RenderElevator key={index} elevator={elevator} />
                 ))}
             </div>
             <div className='container-floors'>
                 {BuildingStructure.floors.map((floor, index) => (
                     <div key={index}>
                         {/* Goes over the array and pushes to the renderer component */}
-                        <_Renderfloor floor={floor} />
+                        <RenderFloor floor={floor} />
                     </div>
                 ))}
             </div>
