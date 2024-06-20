@@ -12,9 +12,7 @@ const assert = require('assert');
         const url = 'http://localhost:3000'; // ודא שזו הכתובת הנכונה
         await driver.get(url);
 
-        // המתן עד שהכפתור יימצא או ייכשל לאחר 10 שניות
-        const buttonId = 'metal11';
-        const buttonLocator = By.id(buttonId);
+        const buttonLocator = By.id('metal11');
 
         let buttonExists = false;
         try {
@@ -25,9 +23,8 @@ const assert = require('assert');
             buttonExists = false;
         }
 
-        console.log(`Button with ID '${buttonId}' exists: ${buttonExists}`);
+        console.log(`Button with ID 'metal11' exists: ${buttonExists}`);
 
-        // בדיקה האם הכפתור קיים
         assert.strictEqual(buttonExists, true, 'Button does not exist.');
     } catch (error) {
         console.error('Error during button existence check:', error);
